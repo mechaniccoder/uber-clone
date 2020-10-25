@@ -10,6 +10,6 @@
     "outDir": "build",
     "strict": true
   },
-  "include": ["src/**.*"],
+  "include": ["src/**.*", "ormConfig.ts"],
   "exclude": ["node_modules"]
 }
