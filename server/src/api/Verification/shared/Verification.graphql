@@ -5,7 +5,7 @@ type Verification {
   key: String!
   used: Boolean!
   createdAt: String!
-  updatedAt: String!
+  updatedAt: String
 }
 
 type Query {

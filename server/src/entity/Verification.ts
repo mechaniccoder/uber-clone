@@ -44,3 +44,5 @@ class Verification extends BaseEntity {
     }
   }
 }
+
+export default Verification;
