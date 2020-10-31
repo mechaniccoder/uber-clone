@@ -8,8 +8,10 @@
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "build",
-    "strict": true
+    "strict": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/**.*", "ormConfig.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"]
 }

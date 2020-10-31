@@ -1,7 +1,5 @@
 import { ConnectionOptions } from "typeorm";
 
-console.log(process.env);
-
 const connectionOptions: ConnectionOptions = {
   type: "postgres",
   host: process.env.DB_ENDPOINT,
@@ -11,7 +9,7 @@ const connectionOptions: ConnectionOptions = {
   database: "uber",
   synchronize: true,
   logging: true,
-  entities: ["src/entity/**/*.*"],
+  entities: ["src/entity/**/*.ts"],
 };
 
 export default connectionOptions;

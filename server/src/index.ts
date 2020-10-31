@@ -1,9 +1,11 @@
 import dotenv from "dotenv";
 import { Options } from "graphql-yoga";
 import { createConnection } from "typeorm";
-import app from "./app";
 dotenv.config();
+
+import app from "./app";
 import connectionOptions from "./ormConfig";
+import User from "./entity/User";
 
 const PORT: string | number = process.env.PORT || 5000;
 const PLAYGROUND: string = "/playground";
