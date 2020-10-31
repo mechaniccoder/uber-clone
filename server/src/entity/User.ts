@@ -8,6 +8,7 @@ import {
   CreateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  UpdateDateColumn,
 } from "typeorm";
 
 const BCRYPT_TIMES = 10;
@@ -48,7 +49,7 @@ class User extends BaseEntity {
   @CreateDateColumn()
   createdAt: string;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt: string;
 
   get fullName(): string {

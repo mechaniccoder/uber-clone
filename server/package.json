@@ -30,6 +30,7 @@
     "typeorm": "^0.2.28"
   },
   "scripts": {
+    "predev": "yarn type",
     "dev": "nodemon --exec ts-node ./src/index.ts -e ts,graphql",
     "pretype": "gql-merge -o ./src/schema.graphql ./src/api/**/*.graphql",
     "type": "graphql-to-typescript ./src/schema.graphql ./src/types/graphql.d.ts"
