@@ -5,3 +5,8 @@ export interface Resolvers {
     [key: string]: Resolver;
   };
 }
+
+export enum verificationTarget {
+  PHONE = "PHONE",
+  EMAIL = "EMAIL",
+}

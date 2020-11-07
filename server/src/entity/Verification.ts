@@ -8,19 +8,18 @@ import {
   BeforeInsert,
   ManyToOne,
 } from "typeorm";
-
-import { verificationTarget } from "../types/types";
+import { verificationTarget } from "../types";
 import User from "./User";
-
-const PHONE = "PHONE";
-const EMAIL = "EMAIL";
 
 @Entity()
 class Verification extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ type: "text", enum: [PHONE, EMAIL] })
+  @Column({
+    type: "text",
+    enum: [verificationTarget.PHONE, verificationTarget.EMAIL],
+  })
   target: verificationTarget;
 
   @Column({ type: "text" })
@@ -28,12 +27,6 @@ class Verification extends BaseEntity {
 
   @Column({ type: "text" })
   key: string;
-
-  @Column({ type: "boolean", default: false })
-  used: boolean;
-
-  @ManyToOne((type) => User, (user) => user.verification)
-  user: User[];
 
   @CreateDateColumn()
   createdAt: string;
@@ -43,8 +36,14 @@ class Verification extends BaseEntity {
 
   @BeforeInsert()
   private createKey(): void {
-    if (this.target === PHONE) {
-      this.key = Math.floor(Math.random() * 100000).toString();
+    if (this.target === verificationTarget.PHONE) {
+      let randomKey = Math.floor(Math.random() * 100000).toString();
+
+      if (randomKey.length === 4) {
+        randomKey + "0";
+      }
+
+      this.key = randomKey;
     } else {
       this.key = Math.random().toString(36).substring(2);
     }

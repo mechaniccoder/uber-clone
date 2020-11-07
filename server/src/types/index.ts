@@ -1,4 +1,7 @@
-export type verificationTarget = "PHONE" | "EMAIL";
+export enum verificationTarget {
+  PHONE = "PHONE",
+  EMAIL = "EMAIL",
+}
 export type rideStatus =
   | "ACCEPTED"
   | "FINISHED"

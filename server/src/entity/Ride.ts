@@ -1,3 +1,4 @@
+import { rideStatus } from "../types";
 import {
   BaseEntity,
   Column,
@@ -7,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { rideStatus } from "../types/types";
 import User from "./User";
 
 @Entity()

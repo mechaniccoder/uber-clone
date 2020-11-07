@@ -10,6 +10,7 @@
     "@types/helmet": "^0.0.48",
     "@types/morgan": "^1.9.1",
     "@types/node": "^14.14.2",
+    "@types/twilio": "^2.11.0",
     "babel-core": "^6.26.3",
     "gql-merge": "^0.0.6",
     "graphql-to-typescript": "^0.1.2",
@@ -27,6 +28,7 @@
     "helmet": "^4.1.1",
     "morgan": "^1.10.0",
     "pg": "^8.4.1",
+    "twilio": "^3.51.0",
     "typeorm": "^0.2.28"
   },
   "scripts": {
