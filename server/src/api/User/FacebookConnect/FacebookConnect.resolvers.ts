@@ -5,6 +5,8 @@ import {
 import { Resolvers } from "../../../types/resolvers";
 import User from "../../../entity/User";
 
+const SANGGYU_FACEBOOK_ID = "100003309401100";
+
 const resolvers: Resolvers = {
   Mutation: {
     FacebookConnect: async (
@@ -13,13 +15,13 @@ const resolvers: Resolvers = {
     ): Promise<FacebookConnectResponse> => {
       try {
         const { facebookId } = args;
-        const existingUser = User.findOne({ facebookId });
+        const existingUser = await User.findOne({ facebookId });
 
         if (existingUser) {
           return {
             ok: true,
             error: null,
-            token: "soon",
+            token: "user exist",
           };
         }
 
@@ -33,7 +35,7 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          token: "soon",
+          token: "user saved",
         };
       } catch (error) {
         return {

@@ -7,7 +7,7 @@ import app from "./app";
 import connectionOptions from "./ormConfig";
 import User from "./entity/User";
 
-const PORT: string | number = process.env.PORT || 5000;
+const PORT: string | number = process.env.PORT || 4000;
 const PLAYGROUND: string = "/playground";
 const ENDPOINT: string = "/graphql";
 
