@@ -12,8 +12,11 @@ import {
   ManyToOne,
   OneToMany,
 } from "typeorm";
+
 import Chat from "./Chat";
 import Message from "./Message";
+import Verification from "./Verification";
+import Ride from "./Ride";
 
 const BCRYPT_TIMES = 10;
 
@@ -77,6 +80,15 @@ class User extends BaseEntity {
 
   @OneToMany((type) => Message, (message) => message.user)
   messages: Message[];
+
+  @OneToMany((type) => Verification, (verification) => verification.user)
+  verification: Verification[];
+
+  @OneToMany((type) => Ride, (ride) => ride.passenger)
+  rideAsPassenger: Ride[];
+
+  @OneToMany((type) => Ride, (ride) => ride.driver)
+  rideAsDriver: Ride[];
 
   @CreateDateColumn()
   createdAt: string;
