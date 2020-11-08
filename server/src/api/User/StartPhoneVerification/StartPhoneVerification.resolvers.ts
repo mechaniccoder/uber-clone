@@ -29,7 +29,8 @@ const resolvers: Resolvers = {
           payload: phoneNumber,
         });
 
-        newVerification.save();
+        await newVerification.save();
+
         await sendVerificationSMS(newVerification.payload, newVerification.key);
 
         console.log(newVerification);

@@ -30,7 +30,7 @@ const resolvers: Resolvers = {
           profilePhoto: `http://graph.facebook.com/v8.0/${facebookId}/picture`,
         });
 
-        newUser.save();
+        await newUser.save();
 
         return {
           ok: true,
