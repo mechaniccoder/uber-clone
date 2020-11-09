@@ -4,6 +4,7 @@ import {
   CompletePhoneVerificationResponse,
 } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -46,7 +47,7 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          token: "comming soon",
+          token: createJWT(existingUser.id),
         };
       } catch (error) {
         return {

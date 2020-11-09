@@ -4,6 +4,7 @@ import {
 } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
 import User from "../../../entity/User";
+import createJWT from "../../../utils/createJWT";
 
 const SANGGYU_FACEBOOK_ID = "100003309401100";
 
@@ -21,7 +22,7 @@ const resolvers: Resolvers = {
           return {
             ok: true,
             error: null,
-            token: "user exist",
+            token: createJWT(existingUser.id),
           };
         }
 
@@ -35,7 +36,7 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          token: "user saved",
+          token: createJWT(newUser.id),
         };
       } catch (error) {
         return {

@@ -4,6 +4,7 @@ import {
   EmailSignUpResponse,
 } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -11,7 +12,7 @@ const resolvers: Resolvers = {
       _,
       args: EmailSignUpMutationArgs
     ): Promise<EmailSignUpResponse> => {
-      const { firstName, lastName, email, password, profilePhoto, age } = args;
+      const { email } = args;
 
       try {
         const existingUser = User.findOne({ email });
@@ -31,7 +32,7 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          token: "comming soon",
+          token: createJWT(newUser.id),
         };
       } catch (error) {
         return {

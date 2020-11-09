@@ -4,6 +4,7 @@ import {
 } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
 import User from "../../../entity/User";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -37,13 +38,13 @@ const resolvers: Resolvers = {
         return {
           ok: true,
           error: null,
-          token: "soon",
+          token: createJWT(user.id),
         };
       } catch (error) {
         return {
           ok: false,
           error: error.message,
-          token: "soon",
+          token: null,
         };
       }
     },
