@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
       const { email } = args;
 
       try {
-        const existingUser = User.findOne({ email });
+        const existingUser = await User.findOne({ email });
 
         if (existingUser) {
           return {
