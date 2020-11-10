@@ -5,10 +5,7 @@ const createJWT = (id: number): string => {
     {
       id,
     },
-    process.env.JWT_SECRET || "",
-    {
-      expiresIn: "1h",
-    }
+    process.env.JWT_SECRET || ""
   );
 
   return token;
