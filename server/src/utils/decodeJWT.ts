@@ -1,4 +1,3 @@
-import { decode } from "punycode";
 import jwt from "jsonwebtoken";
 import User from "../entity/User";
 

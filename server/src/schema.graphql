@@ -10,7 +10,8 @@ type Query {
   chat: Chat!
   message: Message!
   place: Place!
-  user: User!
+  GetMyProfile: GetMyProfileResponse!
+  user: User
   verification: Verification!
 }
 
@@ -84,6 +85,12 @@ type FacebookConnectResponse {
   ok: Boolean!
   error: String
   token: String
+}
+
+type GetMyProfileResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type User {
