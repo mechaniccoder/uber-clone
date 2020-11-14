@@ -1,17 +1,24 @@
+import authResolverMiddleware from "../../../utils/authResolverMiddleware";
 import { GetMyProfileResponse } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
 
+const resolver = async (
+  _: any,
+  args: any,
+  { req }: { req: any }
+): Promise<GetMyProfileResponse> => {
+  const { user } = req;
+
+  return {
+    ok: true,
+    error: null,
+    user,
+  };
+};
+
 const resolvers: Resolvers = {
   Query: {
-    GetMyProfile: async (_, args, { req }): Promise<GetMyProfileResponse> => {
-      const { user } = req;
-      console.log(user);
-      return {
-        ok: true,
-        error: null,
-        user,
-      };
-    },
+    GetMyProfile: authResolverMiddleware(resolver),
   },
 };
 
