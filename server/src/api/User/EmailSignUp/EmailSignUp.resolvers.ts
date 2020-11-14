@@ -50,14 +50,20 @@ const resolvers: Resolvers = {
           };
         }
 
-        if (newUser.email) {
-          const emailVerification = await Verification.create({
-            payload: newUser.email,
-            target: verificationTarget.EMAIL,
-          });
-
-          await sendVerificationEmail(newUser.fullName, emailVerification.key);
+        if (!newUser.email) {
+          return {
+            ok: false,
+            error: "You don't have email!",
+            token: null,
+          };
         }
+
+        const emailVerification = await Verification.create({
+          payload: newUser.email,
+          target: verificationTarget.EMAIL,
+        }).save();
+
+        await sendVerificationEmail(newUser.fullName, emailVerification.key);
 
         return {
           ok: true,

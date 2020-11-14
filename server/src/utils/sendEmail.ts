@@ -4,7 +4,7 @@ const DOMAIN = process.env.MAILGUN_DOAMIN;
 const API_KEY = process.env.MAILGUN_API_KEY;
 const MailgunClient = mailgun({ apiKey: API_KEY || "", domain: DOMAIN || "" });
 
-const sendEmail = (subject: string, text: string) => {
+const sendEmail = async (subject: string, text: string) => {
   const emailData = {
     from: "yuseunghwan94@gmail.com",
     to: "yuseunghwan94@gmail.com",

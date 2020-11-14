@@ -20,4 +20,5 @@ const handleAppStart = () => console.log(`${PORT} 작동 중`);
 
 createConnection(connectionOptions).then(() => {
   app.start(appOptions, handleAppStart);
+  console.log("postgreSQL connected");
 });
