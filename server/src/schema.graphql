@@ -68,6 +68,7 @@ type Mutation {
   FacebookConnect(firstName: String!, lastName: String!, email: String, facebookId: String): FacebookConnectResponse!
   RequestEmailVerification: RequestEmailVerificationResponse!
   StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse
+  UpdateProfile(firstName: String, lastName: String, profilePhoto: String, email: String, password: String, age: Int): UpdateProfileResponse!
 }
 
 type CompletePhoneVerificationResponse {
@@ -133,6 +134,11 @@ type User {
 }
 
 type StartPhoneVerificationResponse {
+  ok: Boolean!
+  error: String
+}
+
+type UpdateProfileResponse {
   ok: Boolean!
   error: String
 }
