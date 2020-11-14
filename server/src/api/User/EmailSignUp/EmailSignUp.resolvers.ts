@@ -1,4 +1,6 @@
-import { User } from "../../../entity";
+import { verificationTarget } from "src/types";
+import { sendVerificationEmail } from "src/utils/sendEmail";
+import { User, Verification } from "../../../entity";
 import {
   EmailSignUpMutationArgs,
   EmailSignUpResponse,
@@ -12,7 +14,7 @@ const resolvers: Resolvers = {
       _,
       args: EmailSignUpMutationArgs
     ): Promise<EmailSignUpResponse> => {
-      const { email } = args;
+      const { email, phoneNumber } = args;
 
       try {
         const existingUser = await User.findOne({ email });
@@ -25,9 +27,37 @@ const resolvers: Resolvers = {
           };
         }
 
-        const newUser = await User.create({ ...args });
+        const ExistingPhoneVerification = await Verification.findOne({
+          payload: phoneNumber,
+          verified: true,
+        });
 
-        await newUser.save();
+        if (!ExistingPhoneVerification) {
+          return {
+            ok: false,
+            error: "You didn't verify phone number",
+            token: null,
+          };
+        }
+
+        const newUser = await User.create({ ...args }).save();
+
+        if (!newUser) {
+          return {
+            ok: false,
+            error: "Failed to sign up new user",
+            token: null,
+          };
+        }
+
+        if (newUser.email) {
+          const emailVerification = await Verification.create({
+            payload: newUser.email,
+            target: verificationTarget.EMAIL,
+          });
+
+          await sendVerificationEmail(newUser.fullName, emailVerification.key);
+        }
 
         return {
           ok: true,

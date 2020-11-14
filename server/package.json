@@ -9,6 +9,7 @@
     "@types/cors": "^2.8.8",
     "@types/helmet": "^0.0.48",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/mailgun-js": "^0.22.11",
     "@types/morgan": "^1.9.1",
     "@types/node": "^14.14.2",
     "@types/twilio": "^2.11.0",
@@ -28,14 +29,16 @@
     "graphql-yoga": "^1.18.3",
     "helmet": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
     "morgan": "^1.10.0",
     "pg": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
     "twilio": "^3.51.0",
     "typeorm": "^0.2.28"
   },
   "scripts": {
     "predev": "yarn type",
-    "dev": "nodemon --exec ts-node ./src/index.ts -e ts,graphql",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts -e ts,graphql",
     "pretype": "gql-merge -o ./src/schema.graphql ./src/api/**/*.graphql",
     "type": "graphql-to-typescript ./src/schema.graphql ./src/types/graphql.d.ts"
   }
