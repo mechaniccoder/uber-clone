@@ -1,7 +1,5 @@
 import { User, Verification } from "src/entity";
 import {
-  CompletePhoneVerificationMutationArgs,
-  CompletePhoneVerificationResponse,
   CompleteEmailVerificationMutationArgs,
   CompleteEmailVerificationResponse,
 } from "src/types/graphql";
@@ -23,6 +21,7 @@ const resolver = async (
         error: "User doesn't have email",
       };
     }
+
     const existingVerification = await Verification.findOne({
       payload: user.email,
       key,
@@ -52,6 +51,8 @@ const resolver = async (
 
 const resolvers: Resolvers = {
   Mutation: {
-    CompleteEmailVerificationResponse: authResolverMiddleware(resolver),
+    CompleteEmailVerification: authResolverMiddleware(resolver),
   },
 };
+
+export default resolvers;

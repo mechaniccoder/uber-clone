@@ -17,7 +17,7 @@ const sendEmail = async (subject: string, text: string) => {
 
 export const sendVerificationEmail = (fullName: string, key: string) => {
   const emailSubject = `Hello! ${fullName}, please verify your email`;
-  const emailText = `The verification key is ${key}`;
+  const emailText = `The verification key is <a href="http://uber-clone.com/verification/${key}">here</a> `;
 
   return sendEmail(emailSubject, emailText);
 };

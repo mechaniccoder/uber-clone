@@ -20,6 +20,13 @@ const resolver = async (
       };
     }
 
+    if (user.verifiedEmail) {
+      return {
+        ok: false,
+        error: "You are already verified",
+      };
+    }
+
     const oldVerification = await Verification.findOne({
       payload: user.email,
     });
