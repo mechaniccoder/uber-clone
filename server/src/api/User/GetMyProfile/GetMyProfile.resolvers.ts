@@ -4,7 +4,7 @@ import { Resolvers } from "../../../types/resolvers";
 
 const resolver = async (
   _: any,
-  args: any,
+  __: any,
   { req }: { req: any }
 ): Promise<GetMyProfileResponse> => {
   const { user } = req;
